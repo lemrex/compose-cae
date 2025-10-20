@@ -1,0 +1,26 @@
+name: Deploy to Huawei Cloud CAE
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Deploy Component
+        uses: lemrex/Upgrade-CAE-component@v1.0.0
+        with:
+          project_id: ${{ secrets.HUAWEI_PROJECT_ID }}
+          enterprise_project_id: "optional"
+          environment_name: "environment name"
+          app_name: "app name"
+          component_name: "component name"
+          version: "1.0.7"
+          accessKey: ${{ secrets.ACCESSKEY }}
+          secretKey: ${{ secrets.SECRETKEY }}
+          region: "af-south-1"
